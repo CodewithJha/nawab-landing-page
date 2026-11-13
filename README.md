@@ -1,7 +1,8 @@
 # Nawab AI booth screen
 
 A full-screen attract display for the Nawab AI booth: the real Nawab mascot
-walking around the screen and the "Nawab AI" wordmark in the centre.
+walking along the bottom of the screen, the "Nawab AI" wordmark on the left, and a
+QR code to https://nawab.upailabs.org on the right.
 Plain HTML, CSS and JS. No build step and no dependencies.
 
 ## Run it at the booth
@@ -27,8 +28,8 @@ Options (add to the URL):
 
 Pick any one:
 
-- **CLI:** `cd nawab-booth && npx vercel` (then `npx vercel --prod`). Accept the defaults. There's no framework and no build command.
-- **Drag and drop:** at vercel.com/new, drag the `nawab-booth` folder in, or use the Vercel dashboard upload.
+- **CLI:** `cd nawab-landing-page && npx vercel` (then `npx vercel --prod`). Accept the defaults. There's no framework and no build command.
+- **Drag and drop:** at vercel.com/new, drag the `nawab-landing-page` folder in, or use the Vercel dashboard upload.
 - **Git import:** push this folder to a GitHub repo, then on vercel.com/new choose "Import Git Repository". Framework preset: Other. Build command: none. Output directory: `.` (root).
 
 To preview locally: `python3 -m http.server 8000` inside this folder, then open http://localhost:8000.
@@ -48,5 +49,5 @@ To preview locally: `python3 -m http.server 8000` inside this folder, then open 
 
 ## Files
 
-`index.html` markup and mascot SVG · `booth.css` tokens, fonts, layout · `mascot.css` the product's mascot
+`index.html` markup, mascot SVG and QR SVG · `qr-nawab.svg` the QR on its own (generated offline with python `qrcode`, error correction M) · `booth.css` tokens, fonts, layout · `mascot.css` the product's mascot
 animations (verbatim) · `booth.js` wandering logic · `sw.js` offline cache · `fonts/` self-hosted woff2 files.

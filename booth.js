@@ -30,11 +30,14 @@
   function measure() {
     W = window.innerWidth;
     H = window.innerHeight;
-    mh = Math.round(Math.max(110, Math.min(H * 0.2, W * 0.12)));
+    mh = Math.round(Math.max(96, Math.min(H * 0.19, W * 0.12)));
     mw = Math.round(mh * 0.727);           // 64:88 viewBox ratio
     var pad = Math.round(Math.min(W, H) * 0.03);
-    bounds = { x0: pad, y0: pad, x1: W - mw - pad, y1: H - mh - Math.round(H * 0.065) };
-    var r = brand.getBoundingClientRect();
+    // he walks a horizontal strip along the bottom, under the wordmark and QR
+    var floor = H - mh - Math.round(H * 0.035);
+    bounds = { x0: pad, y0: floor, x1: W - mw - pad, y1: floor };
+    var a = brand.getBoundingClientRect(), q = document.getElementById("qr").getBoundingClientRect();
+    var r = { left: Math.min(a.left, q.left), top: Math.min(a.top, q.top), right: Math.max(a.right, q.right), bottom: Math.max(a.bottom, q.bottom) };
     var m = Math.round(Math.min(W, H) * 0.025);
     // in walker top-left coordinates
     zone = { x0: r.left - m - mw, y0: r.top - m - mh, x1: r.right + m, y1: r.bottom + m };
@@ -56,7 +59,7 @@
     for (var i = 0; i < 200; i++) {
       var p = { x: rand(bounds.x0, bounds.x1), y: rand(bounds.y0, bounds.y1) };
       if (inZone(p.x, p.y, zone)) continue;
-      if (from && dist(from, p) < Math.min(W, H) * 0.3) continue;
+      if (from && dist(from, p) < W * 0.22) continue;
       if (walkers.some(function (w) { return w.goal && dist(w.goal, p) < mw * 2; })) continue;
       return p;
     }

@@ -104,20 +104,29 @@ body {
 }
 body.idle, body.idle * { cursor: none !important; }
 
+/* ── Layout: wordmark left, QR right, mascot strip along the bottom ── */
+:root { --strip: 27vh; }
+.stage {
+  position: fixed;
+  left: 0; right: 0; top: 0;
+  bottom: var(--strip);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  padding: 4vh 5vw 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
 /* ── Brand lockup: same markup and styles as .nawab-landing__brand, scaled up ── */
 .brand {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.15rem;
-  z-index: 1;
-  pointer-events: none;
   /* product title is 3rem; everything below is in em of this size */
-  font-size: min(11vw, 20vh);
+  font-size: min(8vw, 17vh);
 }
 .brand__star {
   color: var(--city-color);
@@ -138,19 +147,40 @@ body.idle, body.idle * { cursor: none !important; }
 }
 .brand__title span { color: var(--city-color); font-style: normal; }
 
-.url {
-  position: fixed;
-  left: 0; right: 0;
-  bottom: 2.6vh;
+/* ── QR to the live site (pre-rendered SVG, works offline) ── */
+.qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+}
+.qr__card {
+  background: #FFFFFF;
+  border: 1px solid var(--nawab-border);
+  border-radius: 22px;
+  padding: min(1.2vh, 12px);
+  box-shadow: 0 6px 24px rgba(28, 21, 37, 0.06);
+}
+.qr__code {
+  display: block;
+  width: min(40vh, 26vw);
+  height: min(40vh, 26vw);
+}
+.qr__label {
+  margin: 2.4vh 0 0;
   font-family: 'Google Sans', sans-serif;
-  font-size: max(14px, 1.7vh);
+  font-weight: 500;
+  font-size: max(16px, 2.4vh);
+  color: var(--nawab-ink);
+}
+.qr__url {
+  margin: 0.9vh 0 0;
+  font-family: 'Google Sans', sans-serif;
+  font-size: max(13px, 1.6vh);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--nawab-ink-60);
-  opacity: 0.6;
-  z-index: 1;
-  pointer-events: none;
+  opacity: 0.7;
 }
 
 .hint {
