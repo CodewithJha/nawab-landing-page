@@ -43,11 +43,15 @@ To preview locally: `python3 -m http.server 8000` inside this folder, then open 
   same walk cycle with a wider arm and leg swing (24° legs, 28° arms) so it reads from across the room.
 - **Wordmark:** the landing hero `.nawab-landing__title`: Fredoka Light (300), letter-spacing 0.1em,
   "Nawab" in ink `#1C1525`, "AI" in the city colour, with the pulsing ✦ above it (Google Sans glyph).
+- **Skyline:** `lucknow-motif.webp` is the product's own Rumi Darwaza banner,
+  `frontend/public/lucknow-motif.svg` (used by `LucknowMotif.tsx`). It was rendered once, recoloured to the
+  city gold `#C8782E`, trimmed of its bottom frame strip (which held a small "NAWAB AI" name tag), and is
+  shown at 10% opacity along the bottom. The original SVG is 15 MB, so a 416 KB WebP is shipped instead.
 - **Colours:** the `:root` and per-city tokens from `globals.css`. Background is ivory `#faf8f5`.
 - **Licences:** Nawab code is MIT (see `LICENSE-nawab-MIT.txt`). Fredoka, Google Sans and Cormorant Garamond
   are SIL Open Font License 1.1 (see the `OFL-*.txt` files).
 
 ## Files
 
-`index.html` markup, mascot SVG and QR SVG · `qr-nawab.svg` the QR on its own (generated offline with python `qrcode`, error correction M) · `booth.css` tokens, fonts, layout · `mascot.css` the product's mascot
+`index.html` markup, mascot SVG and QR SVG · `lucknow-motif.webp` background skyline · `qr-nawab.svg` the QR on its own (generated offline with python `qrcode`, error correction M) · `booth.css` tokens, fonts, layout · `mascot.css` the product's mascot
 animations (verbatim) · `booth.js` wandering logic · `sw.js` offline cache · `fonts/` self-hosted woff2 files.

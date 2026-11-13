@@ -37,8 +37,10 @@
     var floor = H - mh - Math.round(H * 0.035);
     // ...and only up to the QR card's left edge, never underneath it
     var card = document.querySelector(".qr__card").getBoundingClientRect();
-    var xMax = Math.min(W - pad, card.left - Math.round(W * 0.01)) - mw;
-    bounds = { x0: pad, y0: floor, x1: Math.max(pad, xMax), y1: floor };
+    // the bow pose tilts him 19deg about his feet, so keep that much head room on both sides
+    var lean = Math.ceil(mh * Math.sin(19 * Math.PI / 180));
+    var xMax = Math.min(W - pad, card.left - Math.round(W * 0.01)) - mw - lean;
+    bounds = { x0: pad + lean, y0: floor, x1: Math.max(pad + lean, xMax), y1: floor };
     var r = brand.getBoundingClientRect();   // the QR side is handled by bounds.x1
     var m = Math.round(Math.min(W, H) * 0.025);
     // in walker top-left coordinates
