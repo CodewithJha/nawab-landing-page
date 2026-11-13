@@ -141,6 +141,7 @@ body.idle, body.idle * { cursor: none !important; }
   max-width: 100%;
   /* product title is 3rem; everything below is in em of this size */
   font-size: min(9.4vw, 21vh);
+  transform: translateY(-3.5vh);   /* small nudge above centre */
 }
 .brand__star {
   color: var(--city-color);
