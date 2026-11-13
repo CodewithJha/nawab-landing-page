@@ -1,5 +1,5 @@
 // Cache-first service worker so the booth screen reloads offline.
-var CACHE = "nawab-booth-v5";
+var CACHE = "nawab-booth-v6";
 var FILES = ["./", "index.html", "booth.css", "mascot.css", "booth.js", "favicon.png", "qr-nawab.svg", "lucknow-motif.webp",
   "fonts/fredoka-latin.woff2", "fonts/googlesans-latin.woff2", "fonts/googlesans-symbols.woff2",
   "fonts/cormorant-latin-300.woff2", "fonts/cormorant-latin-300italic.woff2"];
