@@ -104,15 +104,15 @@ body {
 }
 body.idle, body.idle * { cursor: none !important; }
 
-/* ── Faint Lucknow skyline behind everything ──
+/* ── Faint Lucknow monument filling the whole background ──
    Artwork: frontend/public/lucknow-motif.svg from LucknowAI/nawab (the
    "Rumi Darwaza inspired banner" used by LucknowMotif.tsx), recoloured to
-   the city gold and saved as lucknow-motif.webp. */
+   the city gold and saved as lucknow-motif.webp: the central Rumi Darwaza
+   gate rendered at 2560x1440 (16:9) with the bottom name-tag strip trimmed. */
 .skyline {
   position: fixed;
-  left: 0; right: 0; bottom: 0;
-  aspect-ratio: 3200 / 585;
-  background: url("lucknow-motif.webp") center bottom / 100% auto no-repeat;
+  inset: 0;
+  background: url("lucknow-motif.webp") center bottom / cover no-repeat;
   opacity: 0.1;
   z-index: 0;
   pointer-events: none;
