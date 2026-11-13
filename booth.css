@@ -139,8 +139,10 @@ body.idle, body.idle * { cursor: none !important; }
   flex-direction: column;
   align-items: center;
   gap: 0.15rem;
+  max-width: 100%;
   /* product title is 3rem; everything below is in em of this size */
   font-size: min(9.4vw, 21vh);
+  transform: translateY(-3vh);   /* sit the lockup a little higher */
 }
 .brand__star {
   color: var(--city-color);
@@ -160,6 +162,30 @@ body.idle, body.idle * { cursor: none !important; }
   white-space: nowrap;
 }
 .brand__title span { color: var(--city-color); font-style: normal; }
+
+/* What Nawab does, in one glance (copy grounded in the shipped tools:
+   city personas, Serper Google search/maps/news, UPMRC metro fares). */
+.brand__lead,
+.brand__sub {
+  font-family: 'Google Sans', sans-serif;
+  text-align: center;
+  text-wrap: balance;
+  max-width: 100%;
+  margin: 0;
+  line-height: 1.3;
+}
+.brand__lead {
+  margin-top: 5vh;
+  font-weight: 500;
+  font-size: max(18px, 3.3vh);
+  color: var(--nawab-ink);
+}
+.brand__lead em { font-style: normal; color: var(--city-color); }
+.brand__sub {
+  margin-top: 1.2vh;
+  font-size: max(15px, 2.4vh);
+  color: var(--nawab-ink-60);
+}
 
 /* ── QR to the live site (pre-rendered SVG, works offline) ── */
 .qr-layer {
