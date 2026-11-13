@@ -119,16 +119,15 @@ body.idle, body.idle * { cursor: none !important; }
 }
 
 /* ── Layout: wordmark left, QR right, mascot strip along the bottom ── */
-:root { --strip: 27vh; }
 .stage {
   position: fixed;
   left: 0; right: 0; top: 0;
-  bottom: var(--strip);
+  bottom: 0;                     /* full height: wordmark centred on the viewport, like the QR */
   display: grid;
   grid-template-columns: 55fr 45fr;
   align-items: center;
   justify-items: center;
-  padding: 4vh 4vw 0;
+  padding: 0 4vw;
   z-index: 1;
   pointer-events: none;
 }
@@ -142,7 +141,6 @@ body.idle, body.idle * { cursor: none !important; }
   max-width: 100%;
   /* product title is 3rem; everything below is in em of this size */
   font-size: min(9.4vw, 21vh);
-  transform: translateY(-6vh);   /* sit the lockup a little above the middle */
 }
 .brand__star {
   color: var(--city-color);
