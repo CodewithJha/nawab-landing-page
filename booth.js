@@ -35,9 +35,11 @@
     var pad = Math.round(Math.min(W, H) * 0.03);
     // he walks a horizontal strip along the bottom, under the wordmark and QR
     var floor = H - mh - Math.round(H * 0.035);
-    bounds = { x0: pad, y0: floor, x1: W - mw - pad, y1: floor };
-    var a = brand.getBoundingClientRect(), q = document.getElementById("qr").getBoundingClientRect();
-    var r = { left: Math.min(a.left, q.left), top: Math.min(a.top, q.top), right: Math.max(a.right, q.right), bottom: Math.max(a.bottom, q.bottom) };
+    // ...and only up to the QR card's left edge, never underneath it
+    var card = document.querySelector(".qr__card").getBoundingClientRect();
+    var xMax = Math.min(W - pad, card.left - Math.round(W * 0.01)) - mw;
+    bounds = { x0: pad, y0: floor, x1: Math.max(pad, xMax), y1: floor };
+    var r = brand.getBoundingClientRect();   // the QR side is handled by bounds.x1
     var m = Math.round(Math.min(W, H) * 0.025);
     // in walker top-left coordinates
     zone = { x0: r.left - m - mw, y0: r.top - m - mh, x1: r.right + m, y1: r.bottom + m };
@@ -59,7 +61,7 @@
     for (var i = 0; i < 200; i++) {
       var p = { x: rand(bounds.x0, bounds.x1), y: rand(bounds.y0, bounds.y1) };
       if (inZone(p.x, p.y, zone)) continue;
-      if (from && dist(from, p) < W * 0.22) continue;
+      if (from && dist(from, p) < Math.min(W * 0.22, (bounds.x1 - bounds.x0) * 0.4)) continue;
       if (walkers.some(function (w) { return w.goal && dist(w.goal, p) < mw * 2; })) continue;
       return p;
     }

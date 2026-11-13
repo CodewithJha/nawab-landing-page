@@ -148,6 +148,18 @@ body.idle, body.idle * { cursor: none !important; }
 .brand__title span { color: var(--city-color); font-style: normal; }
 
 /* ── QR to the live site (pre-rendered SVG, works offline) ── */
+.qr-layer {
+  /* right column of .stage (same 5vw side padding), but spanning the full
+     viewport height so the whole QR block is vertically centred */
+  position: fixed;
+  top: 0; bottom: 0;
+  left: 50vw; right: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
 .qr {
   display: flex;
   flex-direction: column;
