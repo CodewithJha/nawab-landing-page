@@ -1,0 +1,212 @@
+/* Nawab mascot styles, copied verbatim from LucknowAI/nawab
+   frontend/app/globals.css (MIT License, Copyright (c) 2026 LucknowAI).
+   Do not edit here; booth-specific overrides live in booth.css. */
+.nawab-mascot {
+  position: absolute;
+  left: 22px;
+  bottom: -2px;            /* feet rest on the border line */
+  height: var(--m-h);
+  width: calc(var(--m-h) * 0.727);   /* 64:88 viewBox ratio */
+  pointer-events: auto;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+.nawab-mascot__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* SVG parts need fill-box so percentage origins behave */
+.nawab-mascot .m-head,
+.nawab-mascot .m-eyes,
+.nawab-mascot .m-plume,
+.nawab-mascot .m-moustache,
+.nawab-mascot .m-arm,
+.nawab-mascot .m-leg,
+.nawab-mascot .m-brow {
+  transform-box: fill-box;
+}
+
+/* ── Always-on: blink + plume drift ── */
+.nawab-mascot .m-eyes {
+  transform-origin: center;
+  animation: nawab-m-blink 5.4s ease-in-out infinite;
+}
+.nawab-mascot .m-plume {
+  transform-origin: 20% 100%;
+  animation: nawab-m-plume 3.4s ease-in-out infinite;
+}
+@keyframes nawab-m-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95%           { transform: scaleY(0.12); }
+}
+@keyframes nawab-m-plume {
+  0%, 100% { transform: rotate(-4deg); }
+  50%      { transform: rotate(6deg); }
+}
+
+/* ── stroll: walks the boundary, turns at each end ── */
+.nawab-mascot.is-stroll {
+  animation: nawab-m-stroll 7.6s ease-in-out infinite;
+}
+.nawab-mascot.is-stroll .m-leg--l { animation: nawab-m-step-a 0.62s ease-in-out infinite; }
+.nawab-mascot.is-stroll .m-leg--r { animation: nawab-m-step-b 0.62s ease-in-out infinite; }
+.nawab-mascot.is-stroll .m-arm--l { animation: nawab-m-swing-a 0.62s ease-in-out infinite; }
+.nawab-mascot.is-stroll .m-arm--r { animation: nawab-m-swing-b 0.62s ease-in-out infinite; }
+@keyframes nawab-m-stroll {
+  0%   { transform: translateX(0) scaleX(1) translateY(0); }
+  24%  { transform: translateX(calc(var(--m-walk) * 0.5)) scaleX(1) translateY(-1px); }
+  46%  { transform: translateX(var(--m-walk)) scaleX(1) translateY(0); }
+  52%  { transform: translateX(var(--m-walk)) scaleX(-1) translateY(0); }
+  74%  { transform: translateX(calc(var(--m-walk) * 0.5)) scaleX(-1) translateY(-1px); }
+  96%  { transform: translateX(0) scaleX(-1) translateY(0); }
+  100% { transform: translateX(0) scaleX(1) translateY(0); }
+}
+@keyframes nawab-m-step-a {
+  0%, 100% { transform: rotate(16deg); }
+  50%      { transform: rotate(-16deg); }
+}
+@keyframes nawab-m-step-b {
+  0%, 100% { transform: rotate(-16deg); }
+  50%      { transform: rotate(16deg); }
+}
+@keyframes nawab-m-swing-a {
+  0%, 100% { transform: rotate(-12deg); }
+  50%      { transform: rotate(12deg); }
+}
+@keyframes nawab-m-swing-b {
+  0%, 100% { transform: rotate(12deg); }
+  50%      { transform: rotate(-12deg); }
+}
+/* Pivot each limb at the joint, not the bbox centre */
+.nawab-mascot .m-leg--l { transform-origin: 62% 2%; }
+.nawab-mascot .m-leg--r { transform-origin: 38% 2%; }
+.nawab-mascot .m-arm--l { transform-origin: 79% 20%; }
+.nawab-mascot .m-arm--r { transform-origin: 21% 20%; }
+
+/* ── hang: grips the rim overhead, dangles and swings ── */
+.nawab-mascot.is-hang {
+  transform-origin: 50% 0%;
+  animation: nawab-m-hang 3.2s ease-in-out infinite;
+}
+.nawab-mascot.is-hang .m-arm--l { transform: rotate(-152deg) translateY(2px); }
+.nawab-mascot.is-hang .m-arm--r { transform: rotate(152deg) translateY(2px); }
+.nawab-mascot.is-hang .m-leg--l { animation: nawab-m-dangle-a 1.9s ease-in-out infinite; }
+.nawab-mascot.is-hang .m-leg--r { animation: nawab-m-dangle-b 2.2s ease-in-out infinite; }
+@keyframes nawab-m-hang {
+  0%, 100% { transform: translateY(6px) rotate(-7deg); }
+  50%      { transform: translateY(6px) rotate(7deg); }
+}
+@keyframes nawab-m-dangle-a {
+  0%, 100% { transform: rotate(9deg); }
+  50%      { transform: rotate(-6deg); }
+}
+@keyframes nawab-m-dangle-b {
+  0%, 100% { transform: rotate(-8deg); }
+  50%      { transform: rotate(7deg); }
+}
+
+/* ── twirl: strokes the moustache, pleased with himself ── */
+.nawab-mascot.is-twirl .m-arm--r {
+  transform: rotate(-128deg) translateY(-3px);
+  animation: nawab-m-twirl-arm 1.5s ease-in-out infinite;
+}
+.nawab-mascot.is-twirl .m-moustache {
+  transform-origin: center;
+  animation: nawab-m-twirl-tash 1.5s ease-in-out infinite;
+}
+.nawab-mascot.is-twirl .m-head {
+  transform-origin: 50% 90%;
+  animation: nawab-m-tilt 3s ease-in-out infinite;
+}
+@keyframes nawab-m-twirl-arm {
+  0%, 100% { transform: rotate(-128deg) translateY(-3px); }
+  50%      { transform: rotate(-138deg) translateY(-4px); }
+}
+@keyframes nawab-m-twirl-tash {
+  0%, 100% { transform: scaleX(1) rotate(0deg); }
+  50%      { transform: scaleX(1.12) rotate(-3deg); }
+}
+@keyframes nawab-m-tilt {
+  0%, 100% { transform: rotate(-5deg); }
+  50%      { transform: rotate(5deg); }
+}
+
+/* ── bow: a courtly adab ── */
+.nawab-mascot.is-bow {
+  transform-origin: 50% 100%;
+  animation: nawab-m-bow 3.6s ease-out infinite;
+}
+.nawab-mascot.is-bow .m-arm--r { transform: rotate(-58deg); }
+.nawab-mascot.is-bow .m-arm--l { transform: rotate(18deg); }
+@keyframes nawab-m-bow {
+  0%, 12%, 88%, 100% { transform: rotate(0deg); }
+  38%, 62%           { transform: rotate(-19deg); }
+}
+
+/* ── wave: greets whoever is reading ── */
+.nawab-mascot.is-wave .m-arm--r {
+  animation: nawab-m-wave 0.9s ease-in-out infinite;
+}
+.nawab-mascot.is-wave {
+  animation: nawab-m-lean 3.8s ease-in-out infinite;
+}
+@keyframes nawab-m-wave {
+  0%, 100% { transform: rotate(-142deg); }
+  50%      { transform: rotate(-172deg); }
+}
+@keyframes nawab-m-lean {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(-3deg); }
+}
+
+/* ── peek: wanders off the edge, then leans back in ── */
+.nawab-mascot.is-peek {
+  animation: nawab-m-peek 5.2s ease-in-out infinite;
+}
+@keyframes nawab-m-peek {
+  0%    { transform: translateX(0) scaleX(1); }
+  22%   { transform: translateX(var(--m-walk)) scaleX(1); }
+  30%   { transform: translateX(var(--m-walk)) scaleX(-1); }
+  46%   { transform: translateX(calc(var(--m-walk) + 34px)) scaleX(-1); }
+  58%   { transform: translateX(calc(var(--m-walk) + 12px)) scaleX(-1) rotate(-9deg); }
+  70%   { transform: translateX(calc(var(--m-walk) + 34px)) scaleX(-1) rotate(0deg); }
+  88%   { transform: translateX(0) scaleX(-1); }
+  100%  { transform: translateX(0) scaleX(1); }
+}
+
+/* ── ponder: hand at chin, thinking it over (also the reduced-motion pose) ── */
+.nawab-mascot.is-ponder .m-arm--r { transform: rotate(-108deg) translateY(-1px); }
+.nawab-mascot.is-ponder .m-head {
+  transform-origin: 50% 90%;
+  animation: nawab-m-ponder-head 4.8s ease-in-out infinite;
+}
+.nawab-mascot.is-ponder { animation: nawab-m-breathe 4.8s ease-in-out infinite; }
+@keyframes nawab-m-ponder-head {
+  0%, 100% { transform: rotate(-7deg); }
+  50%      { transform: rotate(2deg); }
+}
+
+/* ── attentive: user is typing, so he settles and watches ── */
+.nawab-mascot.is-attentive { animation: nawab-m-breathe 3.6s ease-in-out infinite; }
+.nawab-mascot.is-attentive .m-brow--l { transform: translateY(-1px); }
+.nawab-mascot.is-attentive .m-brow--r { transform: translateY(-1px); }
+@keyframes nawab-m-breathe {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50%      { transform: translateY(-1.5px) scaleY(1.015); }
+}
+
+/* ── hover easter egg: startle him and he perks up ── */
+.nawab-mascot:hover .m-head {
+  transform-origin: 50% 90%;
+  animation: nawab-m-startle 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.nawab-mascot:hover .m-brow { transform: translateY(-2px); }
+@keyframes nawab-m-startle {
+  0%   { transform: translateY(0) rotate(0deg); }
+  35%  { transform: translateY(-3px) rotate(-7deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
