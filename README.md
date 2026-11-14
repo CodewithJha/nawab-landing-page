@@ -1,8 +1,8 @@
 # Nawab AI booth screen
 
 A full-screen attract display for the Nawab AI booth: the real Nawab mascot
-walking along the bottom of the screen, the "Nawab AI" wordmark on the left, and a
-QR code to https://nawab.upailabs.org on the right.
+walking along the bottom of the screen, the "Nawab AI" wordmark on the left with a short
+tagline under it, and a QR code to https://nawab.upailabs.org on the right.
 Plain HTML, CSS and JS. No build step and no dependencies.
 
 ## Run it at the booth
